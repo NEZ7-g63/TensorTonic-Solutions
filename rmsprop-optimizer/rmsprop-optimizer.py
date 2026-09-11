@@ -12,15 +12,11 @@ def rmsprop_step(
     Returns (new_w, new_s) with the same shapes as the inputs.
     """
     # Write code here
-    w_first = np.array(w, dtype = np.float64)
-    g_first = np.array(g, dtype = np.float64)
-    s_first = np.array(s, dtype = np.float64)
+    w = np.array(w)
+    g = np.array(g)
+    s = np.array(s)
 
-    #Step 1
-    new_s = beta * s_first + (1 - beta) * (g_first ** 2)
-    new_w = w_first - (lr / (np.sqrt(new_s + eps)) * g_first)    
-
+    new_s = beta * s + (1-beta)* np.power(g,2)
+    new_w = w - (lr/(np.sqrt(new_s + eps)))*g
     return new_w, new_s
-    
-    
     pass
